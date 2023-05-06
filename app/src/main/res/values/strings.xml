@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">OjoPolicial</string>
+    <string name="title_activity_maps">MapsActivity</string>
+    <string name="Btnlogin">Iniciar Sesión</string>
+    <string name="Novedades">Novedades</string>
+    <string name="btnatras">Atrás</string>
+    <string name="nombreescuelas">EFP.Eugenio Espejo</string>
+</resources>
