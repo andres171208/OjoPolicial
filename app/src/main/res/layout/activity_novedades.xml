@@ -7,6 +7,7 @@
     android:onClick="Atras"
     tools:context=".NovedadesActivity">
 
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="327dp"

@@ -5,4 +5,14 @@
     <string name="Novedades">Novedades</string>
     <string name="btnatras">Atrás</string>
     <string name="nombreescuelas">EFP.Eugenio Espejo</string>
+
+    <string-array name="medico">
+        <item>Citas Médicas</item>
+        <item>Descanso Médico Interno</item>
+        <item>Descanso Médico Domiciliario</item>
+        <item>Lesiones</item>
+        <item>Terapia</item>
+        <item>Calamidad Doméstica</item>
+    </string-array>
+
 </resources>

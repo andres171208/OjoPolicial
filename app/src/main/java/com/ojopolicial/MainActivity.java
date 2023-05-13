@@ -27,7 +27,7 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity {
     AlertDialog alerta = null;
     EditText usuario, contraseña;
-    EditText usuario2,contraseña2;
+    String usuario2,contraseña2;
     Button btnlogin;
 
     @Override
@@ -43,19 +43,21 @@ public class MainActivity extends AppCompatActivity {
 
         usuario = findViewById(R.id.usuario);
         contraseña = findViewById(R.id.contrasena);
-        usuario2 = findViewById(R.id.usuario);
-        contraseña2= findViewById(R.id.contrasena);
 
         btnlogin= (Button) findViewById(R.id.btnlogin);
 
         btnlogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               logueo(" http://192.168.192.95/Conexion/ajax/persona.php");
-            }
+                usuario2 =usuario.getText().toString();
+                contraseña2=contraseña.getText().toString();
+                if(!usuario2.isEmpty()  && !contraseña2.isEmpty()) {
+                    logueo(" http://192.168.194.48/Conexion/ajax/persona.php?op=log");
+                }else{
+                    Toast.makeText(MainActivity.this, "No se permiten campos vacios", Toast.LENGTH_SHORT).show();
+                }
+                }
         });
-
-
 
         getAlertaNotGps();
     }
@@ -88,7 +90,8 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(String response) {
 
                 if(!response.isEmpty()){
-                  Intent intent =  new Intent(getApplicationContext(),MenuActivity.class);
+                    Toast.makeText(MainActivity.this, "CREDENCIALES CORRECTAS", Toast.LENGTH_SHORT).show();
+                  Intent intent =  new Intent(getApplicationContext(),Normaladmin.class);
                   startActivity(intent);
                 }else{
                     Toast.makeText(MainActivity.this, "CREDENCIALES ERRONEAS", Toast.LENGTH_SHORT).show();
@@ -103,15 +106,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> parametros  =   new HashMap<String,String>();
-                parametros.put("usuario",usuario.getText().toString());
-                parametros.put("password",contraseña.getText().toString());
+                parametros.put("usuario", usuario.getText().toString());
+                parametros.put("password", contraseña.getText().toString());
                 return parametros;
             }
         };
-
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
-
     }
-
 }
