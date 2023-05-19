@@ -20,15 +20,19 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-
 
 public class MainActivity extends AppCompatActivity {
     AlertDialog alerta = null;
     EditText usuario, contraseña;
     String usuario2,contraseña2;
     Button btnlogin;
+    ArrayList<String> arrayListUsuario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
                 }else{
                     Toast.makeText(MainActivity.this, "No se permiten campos vacios", Toast.LENGTH_SHORT).show();
                 }
-                }
+            }
         });
 
         getAlertaNotGps();
@@ -91,8 +95,12 @@ public class MainActivity extends AppCompatActivity {
 
                 if(!response.isEmpty()){
                     Toast.makeText(MainActivity.this, "CREDENCIALES CORRECTAS", Toast.LENGTH_SHORT).show();
-                  Intent intent =  new Intent(getApplicationContext(),Normaladmin.class);
-                  startActivity(intent);
+                    try {
+                        JSONObject respJSON = new JSONObject(response);
+                        TipoUsuario(respJSON.getInt("id_usuario"));
+                    } catch (JSONException e) {
+                        throw new RuntimeException(e);
+                    }
                 }else{
                     Toast.makeText(MainActivity.this, "CREDENCIALES ERRONEAS", Toast.LENGTH_SHORT).show();
                 }
@@ -113,5 +121,54 @@ public class MainActivity extends AppCompatActivity {
         };
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
+    }
+
+    public void TipoUsuario(int id){
+        String URL = "http://192.168.194.48/Conexion/ajax/persona.php?op=tipoUsu&id="+id;
+        RequestQueue queve = Volley.newRequestQueue(this);
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                if (response.length() > 0) {
+                    try {
+                        JSONObject jsonObject = new JSONObject(response);
+                        obtenerEscuelas(jsonObject);
+                    } catch (JSONException jsnEx1) {
+                        Toast.makeText(getApplicationContext(), "jsnEx1" + jsnEx1.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(MainActivity.this, "Error de Copilación", Toast.LENGTH_SHORT).show();
+            }
+        });
+        queve.add(stringRequest);
+    }
+
+    public  void   obtenerEscuelas(JSONObject  jsonObject2){
+        arrayListUsuario   =   new ArrayList<>();
+        String  Usuario;
+
+        try{
+            for(int i=0;i<jsonObject2.length();i++) {
+                Usuario   =   jsonObject2.getString("usu_tipo_usuario");
+                if (Usuario.equals("DT")) {
+                    Intent intent =  new Intent(getApplicationContext(),Normaladmin.class);
+                    startActivity(intent);
+                } else if (Usuario.equals("SDT")){
+                    Intent intent =  new Intent(getApplicationContext(),Normaladmin.class);
+                    startActivity(intent);
+                }else if (Usuario.equals("ADM")) {
+                    Intent intent =  new Intent(getApplicationContext(),MenuActivity.class);
+                    startActivity(intent);
+                }
+
+
+            }
+        }catch(JSONException jsnEx2){
+            Toast.makeText(getApplicationContext(), "jsnEx2" + jsnEx2.getMessage(), Toast.LENGTH_SHORT).show();
+        }
     }
 }

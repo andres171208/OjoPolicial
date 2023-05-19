@@ -19,6 +19,10 @@
             android:name=".Normaladmin"
             android:exported="false" />
         <activity
+            android:name=".Actividad_Listado"
+            android:exported="false" />
+
+        <activity
             android:name=".NovedadesActivity"
             android:exported="false" />
         <activity

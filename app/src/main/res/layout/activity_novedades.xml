@@ -2,34 +2,58 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/txt"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:onClick="Atras"
     tools:context=".NovedadesActivity">
 
+    <androidx.cardview.widget.CardView
+        android:id="@+id/Detalle"
+        android:layout_width="407dp"
+        android:layout_height="319dp"
+        tools:layout_editor_absoluteX="2dp"
+        tools:layout_editor_absoluteY="101dp"
+        tools:ignore="MissingConstraints">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="327dp"
-        android:layout_height="312dp"
-        android:layout_marginTop="125dp"
-        android:text="Escribir Aqui Novedades"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/btnatras"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="312dp"
-        android:onClick="Atras"
-        android:text="@string/btnatras"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.028" />
+        <TableLayout
+            android:id="@+id/tbnovedades"
+            android:layout_width="match_parent"
+            android:layout_height="254dp"
+            tools:ignore="MissingConstraints">
+
+            <TableRow
+                android:id="@+id/Encabezado"
+                android:layout_width="335dp"
+                android:layout_height="match_parent">
+
+
+                <TextView
+                    android:id="@+id/Novedad"
+                    android:layout_width="197dp"
+                    android:layout_height="match_parent"
+                    android:text="NOVEDADES"
+                    tools:text="NOVEDADES" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ListView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/lista"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    tools:ignore="MissingConstraints" />
+
+            </TableRow>
+
+        </TableLayout>
+
+    </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
