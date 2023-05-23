@@ -104,9 +104,9 @@ public class NovedadEscuela_PopUp extends AppCompatActivity {
 
                 NombreE.setText(DeEscuela);
                 DetalleN.setText(DeNovedad);
-                Autor.setText(DeDirector);
-                FechaN.setText(DeFecha);
-                NovedadT.setText(DeTipo);
+                Autor.setText("Director:  "+DeDirector);
+                FechaN.setText("Fecha de Reporte:  "+DeFecha);
+                NovedadT.setText("Tipo:  "+DeTipo);
 
 
             }

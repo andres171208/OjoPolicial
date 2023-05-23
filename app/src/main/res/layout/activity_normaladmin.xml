@@ -5,11 +5,15 @@
     android:id="@+id/Escuelas"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Normaladmin">
+    tools:context=".Normaladmin"
+    android:background="@drawable/drawable2">
+
+
 
     <CheckBox
         android:id="@+id/checknovedades"
         android:layout_width="153dp"
+        android:textColor="@color/black"
         android:layout_height="53dp"
         android:layout_marginEnd="10dp"
         android:text="Novedad"
@@ -19,10 +23,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.178"
-        tools:ignore="HardcodedText,TouchTargetSizeCheck" />
+        tools:ignore="HardcodedText,TouchTargetSizeCheck"
+        android:layout_marginRight="10dp" />
 
     <Spinner
         android:id="@+id/spinnerescuelas"
+        android:background="#001535"
+        android:textColor="@color/black"
         android:layout_width="274dp"
         android:layout_height="42dp"
         android:layout_marginStart="20dp"
@@ -39,6 +46,8 @@
     <Spinner
         android:id="@+id/spinnermedico"
         android:layout_width="337dp"
+        android:textColor="@color/black"
+        android:background="#001535"
         android:layout_height="63dp"
         android:layout_marginStart="15dp"
         android:layout_marginEnd="15dp"
@@ -51,12 +60,14 @@
 
     <EditText
         android:id="@+id/detallenovedad"
+        android:textColorHint="@color/black"
         android:layout_width="325dp"
         android:layout_height="122dp"
         android:layout_marginStart="15dp"
         android:layout_marginEnd="15dp"
-        android:autofillHints=""
         android:ems="10"
+        android:textColor="@color/black"
+
         android:gravity="start|top"
         android:hint="Inserte Detalle"
         android:inputType="textMultiLine"
@@ -74,11 +85,13 @@
         android:layout_width="184dp"
         android:layout_height="70dp"
         android:text="Enviar Novedad"
+        android:background="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.936" />
+        app:layout_constraintVertical_bias="0.936"
+        tools:ignore="TextSizeCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:padding="16dp"
     android:orientation="horizontal"
-    tools:context=".NovedadEscuela_PopUp">
+    tools:context=".NovedadEscuela_PopUp"
+    android:background="@drawable/degradado">
 
     <TableLayout
         android:id="@+id/tbnovedades"
@@ -21,10 +22,11 @@
             android:id="@+id/titulo_superior"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAlignment="center"
             android:gravity="center"
             android:text="Large Text"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
+            android:textAlignment="center"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textStyle="bold" />
 
     </TableRow>
 
@@ -37,8 +39,11 @@
                 android:id="@+id/Fecha"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:text="Small Text"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
+                android:textAlignment="center"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/black" />
         </TableRow>
         <TableRow
             android:id="@+id/Descripcion2"
@@ -50,8 +55,11 @@
                 android:id="@+id/NovedadTipo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:text="Small Text"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
+                android:textAlignment="center"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/black" />
         </TableRow>
         <TableRow
             android:id="@+id/Descripcion3"
@@ -63,9 +71,11 @@
                 android:id="@+id/Autor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:text="Small Text"
+                android:textAlignment="center"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                tools:ignore="DuplicateIds" />
+                android:textColor="@color/black" />
         </TableRow>
 
         <TableRow
@@ -78,9 +88,11 @@
                 android:id="@+id/descripcion_inferior"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
+                android:gravity="center"
                 android:text="Small Text"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
+                android:textAlignment="center"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/black" />
         </TableRow>
         <Button
             android:id="@+id/btneliminar"

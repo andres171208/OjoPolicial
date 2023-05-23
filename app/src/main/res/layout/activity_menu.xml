@@ -6,18 +6,47 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MenuActivity">
+    <TableLayout
+        android:id="@+id/tbnovedades"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:ignore="MissingConstraints">
 
-    <Button
-        android:id="@+id/btnnovedades"
-        android:layout_width="155dp"
-        android:layout_height="50dp"
-        android:onClick="Novedades"
-        android:text="@string/Novedades"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.028" />
+    <TableRow
+        android:id="@+id/BotonNovdad"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <Button
+            android:id="@+id/btnnovedades"
+            android:layout_width="155dp"
+            android:layout_height="50dp"
+            android:onClick="Novedades"
+            android:text="@string/Novedades"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.028" />
+    <TableRow
+        android:id="@+id/BotonSalir"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/btnSalir"
+            android:layout_width="173dp"
+            android:layout_height="match_parent"
+            android:onClick="Salir"
+            android:text="Cerrar Sesión"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.028" />
+    </TableRow>
+    </TableRow>
+
+    </TableLayout>
 
     <fragment
         android:id="@+id/mapView"
