@@ -30,7 +30,7 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity {
     AlertDialog alerta = null;
     EditText usuario, contraseña;
-    String usuario2,contraseña2;
+    String usuario2,contraseña2,id_usuario;
     Button btnlogin;
     ArrayList<String> arrayListUsuario;
 
@@ -132,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
                 if (response.length() > 0) {
                     try {
                         JSONObject jsonObject = new JSONObject(response);
-                        obtenerEscuelas(jsonObject);
+                        LoginTipoUsu(jsonObject);
                     } catch (JSONException jsnEx1) {
                         Toast.makeText(getApplicationContext(), "jsnEx1" + jsnEx1.getMessage(), Toast.LENGTH_SHORT).show();
                     }
@@ -147,18 +147,21 @@ public class MainActivity extends AppCompatActivity {
         queve.add(stringRequest);
     }
 
-    public  void   obtenerEscuelas(JSONObject  jsonObject2){
+    public  void   LoginTipoUsu(JSONObject  jsonObject2){
         arrayListUsuario   =   new ArrayList<>();
         String  Usuario;
 
         try{
             for(int i=0;i<jsonObject2.length();i++) {
                 Usuario   =   jsonObject2.getString("usu_tipo_usuario");
+                id_usuario   =   jsonObject2.getString("id_usuario");
                 if (Usuario.equals("DT")) {
                     Intent intent =  new Intent(getApplicationContext(),Normaladmin.class);
+                    intent.putExtra("id_usuario",id_usuario);
                     startActivity(intent);
                 } else if (Usuario.equals("SDT")){
                     Intent intent =  new Intent(getApplicationContext(),Normaladmin.class);
+                    intent.putExtra("id_usuario",id_usuario);
                     startActivity(intent);
                 }else if (Usuario.equals("ADM")) {
                     Intent intent =  new Intent(getApplicationContext(),MenuActivity.class);

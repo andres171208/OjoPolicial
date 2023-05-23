@@ -31,12 +31,17 @@ import java.util.Map;
 public class Normaladmin extends AppCompatActivity {
     Spinner spEscuelas;
     Spinner spTipoN;
+
+    Bundle bundle;
+    String  id_usuario;
     ArrayList<String> arrayListEscuelas;
     ArrayAdapter<String> adapterEscuelas;
 
     CheckBox Enovedad;
     EditText DetalleN;
     Button btnEnviar;
+    String idescuelasE;
+    String sSubCadena;
 
 
     @Override
@@ -49,6 +54,9 @@ public class Normaladmin extends AppCompatActivity {
         Enovedad = (CheckBox) findViewById(R.id.checknovedades);
         DetalleN = findViewById(R.id.detallenovedad);
         btnEnviar = findViewById(R.id.btnenviarnovedades);
+        bundle = getIntent().getExtras();
+        id_usuario  = bundle.getString("id_usuario");
+
 
         btnEnviar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,6 +65,7 @@ public class Normaladmin extends AppCompatActivity {
                     EnviarNovedad("http://192.168.194.48/Conexion/ajax/novedades.php?op=insertar");
                 try {
                     Toast.makeText(Normaladmin.this, "REGISTRADO", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Normaladmin.this, sSubCadena, Toast.LENGTH_SHORT).show();
                 } catch (Exception jsnEx1) {
                     Toast.makeText(getApplicationContext(), "jsnEx1" + jsnEx1.getMessage(), Toast.LENGTH_SHORT).show();
                 }
@@ -109,7 +118,9 @@ public class Normaladmin extends AppCompatActivity {
         try {
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
-                String Escuelas = jsonObject.getString("esc_nombre");
+                idescuelasE=jsonObject.getString("id_escuelas");
+                String nombreE=jsonObject.getString("esc_nombre");
+                String Escuelas = idescuelasE+" "+nombreE;
                 arrayListEscuelas.add(Escuelas);
             }
         } catch (JSONException jsnEx2) {
@@ -143,6 +154,7 @@ public class Normaladmin extends AppCompatActivity {
                 Map<String, String> parametros  =   new HashMap<String,String>();
                 parametros.put("nov_detalle", DetalleN.getText().toString());
 
+
                 if (Enovedad.isChecked()) {
                     parametros.put("nov_tipo", spTipoN.getSelectedItem().toString());
                 } else {
@@ -150,10 +162,13 @@ public class Normaladmin extends AppCompatActivity {
                     parametros.put("nov_tipo", spTipoN);
                 }
 
-                String usuario =  "13";
-                parametros.put("fk_usuario", usuario);
-                String escuela =  "2";
-                parametros.put("fk_escuelas", escuela);
+                parametros.put("fk_usuario", id_usuario);
+                String spescuela = spEscuelas.getSelectedItem().toString();
+                sSubCadena = spescuela.substring(1,2);
+                String idprueba  ="1";
+
+                    parametros.put("fk_escuelas", idprueba);
+
 
                 return parametros;
             }

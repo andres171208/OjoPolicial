@@ -5,50 +5,112 @@
     android:id="@+id/txt"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginRight="25dp"
     android:onClick="Atras"
     tools:context=".NovedadesActivity">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/Detalle"
-        android:layout_width="407dp"
-        android:layout_height="319dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         tools:layout_editor_absoluteX="2dp"
         tools:layout_editor_absoluteY="101dp"
         tools:ignore="MissingConstraints">
 
-
         <TableLayout
             android:id="@+id/tbnovedades"
             android:layout_width="match_parent"
-            android:layout_height="254dp"
+            android:layout_height="match_parent"
             tools:ignore="MissingConstraints">
 
             <TableRow
                 android:id="@+id/Encabezado"
-                android:layout_width="335dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
+                <TextView
+                    android:id="@+id/ESCUELA"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:gravity="center"
+                    android:text="NOVEDADES DE ESCUELAS DE FORMACION DE POLICIAS"
+                    tools:text="ESCUELA"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+            </TableRow>
+            <FrameLayout
+                android:id="@+id/LineaCabecera"
+                android:layout_width="fill_parent"
+                android:layout_height="2px"
+                android:layout_span="6"
+                android:background="#FFFFFF" >
+            </FrameLayout>
+            <ImageView
+                android:id="@+id/iconopolicialogin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.185"
+                app:srcCompat="@drawable/logodne"
+                android:contentDescription="TODO" />
+            <Button
+                android:id="@+id/btnvolver"
+                android:layout_width="155dp"
+                android:layout_height="50dp"
+                android:onClick="Atras"
+                android:text="ATRAS"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.028" />
+            <TableRow
+                android:id="@+id/Opciones"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/Novedad"
-                    android:layout_width="197dp"
-                    android:layout_height="match_parent"
-                    android:text="NOVEDADES"
-                    tools:text="NOVEDADES" />
-
+                    android:id="@+id/Opcionestxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:gravity="center"
+                    android:text="Opciones"
+                    tools:text="OPCIONES" />
+                <TextView
+                    android:id="@+id/Escuelastxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:gravity="center"
+                    android:text="Escuelas"
+                    tools:text="ESCUELAS" />
             </TableRow>
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
 
+            <TableRow
+                android:id="@+id/FilaT"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:id="@+id/llBotonera" >
+                </LinearLayout>
                 <ListView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/lista"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
-                    tools:ignore="MissingConstraints" />
+                    android:gravity="center"
+                    tools:ignore="MissingConstraints"
+                    android:divider="@android:color/transparent"/>
 
             </TableRow>
 
