@@ -7,12 +7,16 @@
     <string name="nombreescuelas">EFP.Eugenio Espejo</string>
 
     <string-array name="medico">
-        <item>Citas Médicas</item>
+        <item>Aspirante Fallecido</item>
+        <item>Aspirante Detenido</item>
+        <item>Aspirante Accidentado</item>
+        <item>Procesos Administrativos</item>
+        <item>Hospitalizacion</item>
+        <item>Violación</item>
         <item>Descanso Médico Interno</item>
         <item>Descanso Médico Domiciliario</item>
-        <item>Lesiones</item>
-        <item>Terapia</item>
-        <item>Calamidad Doméstica</item>
+        <item>Lesiones Graves</item>
+
     </string-array>
     
     

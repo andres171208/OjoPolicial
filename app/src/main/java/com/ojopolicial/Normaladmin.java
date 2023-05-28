@@ -20,42 +20,48 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Normaladmin extends AppCompatActivity {
     Spinner spEscuelas;
     Spinner spTipoN;
-
     Bundle bundle;
     String  id_usuario;
-    ArrayList<String> arrayListEscuelas;
-    ArrayAdapter<String> adapterEscuelas;
+
 
     CheckBox Enovedad;
     EditText DetalleN;
+    Button Salir;
     Button btnEnviar;
     String idescuelasE;
-    String sSubCadena;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_normaladmin);
-
-        spEscuelas = findViewById(R.id.spinnerescuelas);
+        Salir= (Button) findViewById(R.id.btnSalir);
         spTipoN = findViewById(R.id.spinnermedico);
         Enovedad = (CheckBox) findViewById(R.id.checknovedades);
         DetalleN = findViewById(R.id.detallenovedad);
         btnEnviar = findViewById(R.id.btnenviarnovedades);
         bundle = getIntent().getExtras();
         id_usuario  = bundle.getString("id_usuario");
+
+        Salir.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CerrarSesion("http://192.168.194.48/Conexion/ajax/persona.php?op=salir");
+                Toast.makeText(Normaladmin.this, "Cerrando Sesion...", Toast.LENGTH_SHORT).show();
+                Intent intent =  new Intent(getApplicationContext(),MainActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
         btnEnviar.setOnClickListener(new View.OnClickListener() {
@@ -65,11 +71,12 @@ public class Normaladmin extends AppCompatActivity {
                     EnviarNovedad("http://192.168.194.48/Conexion/ajax/novedades.php?op=insertar");
                 try {
                     Toast.makeText(Normaladmin.this, "REGISTRADO", Toast.LENGTH_SHORT).show();
-                    Toast.makeText(Normaladmin.this, sSubCadena, Toast.LENGTH_SHORT).show();
+
                 } catch (Exception jsnEx1) {
                     Toast.makeText(getApplicationContext(), "jsnEx1" + jsnEx1.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
+
         });
 
         init();
@@ -87,16 +94,17 @@ public class Normaladmin extends AppCompatActivity {
 
 
     //Agregar   Lista   de  escuelas
+    //Agregar   Lista   de  escuelas
     public void init() {
-        String URL = "http://192.168.194.48/Conexion/ajax/escuelas.php?op=listar";
+        String URL = "http://192.168.194.48/Conexion/ajax/escuelas.php?op=mostrarescuelas&id="+id_usuario;
         RequestQueue queve = Volley.newRequestQueue(this);
         StringRequest stringRequest = new StringRequest(Request.Method.GET, URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 if (response.length() > 0) {
                     try {
-                        JSONArray jsonArray = new JSONArray(response);
-                        obtenerEscuelas(jsonArray);
+                        JSONObject jsonObject = new JSONObject(response);
+                        obtenerEscuelas(jsonObject);
                     } catch (JSONException jsnEx1) {
                         Toast.makeText(getApplicationContext(), "jsnEx1" + jsnEx1.getMessage(), Toast.LENGTH_SHORT).show();
                     }
@@ -113,22 +121,15 @@ public class Normaladmin extends AppCompatActivity {
 
 
     //oBTENER   LAS Escuelas
-    public void obtenerEscuelas(JSONArray jsonArray) {
-        arrayListEscuelas = new ArrayList<>();
-        try {
-            for (int i = 0; i < jsonArray.length(); i++) {
-                JSONObject jsonObject = jsonArray.getJSONObject(i);
-                idescuelasE=jsonObject.getString("id_escuelas");
-                String nombreE=jsonObject.getString("esc_nombre");
-                String Escuelas = idescuelasE+" "+nombreE;
-                arrayListEscuelas.add(Escuelas);
+    public void obtenerEscuelas(JSONObject  jsonObject2){
+
+        try{
+            for(int i=0;i<jsonObject2.length();i++) {
+                idescuelasE=jsonObject2.getString("id_escuelas");
             }
         } catch (JSONException jsnEx2) {
             Toast.makeText(getApplicationContext(), "jsnEx2" + jsnEx2.getMessage(), Toast.LENGTH_SHORT).show();
         }
-        adapterEscuelas = new ArrayAdapter<String>(this,
-                androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, arrayListEscuelas);
-        spEscuelas.setAdapter(adapterEscuelas);
     }
 
 
@@ -161,13 +162,8 @@ public class Normaladmin extends AppCompatActivity {
                     String spTipoN = "Ninguna";
                     parametros.put("nov_tipo", spTipoN);
                 }
-
                 parametros.put("fk_usuario", id_usuario);
-                String spescuela = spEscuelas.getSelectedItem().toString();
-                sSubCadena = spescuela.substring(1,2);
-                String idprueba  ="1";
-
-                    parametros.put("fk_escuelas", idprueba);
+                parametros.put("fk_escuelas", idescuelasE);
 
 
                 return parametros;
@@ -176,15 +172,25 @@ public class Normaladmin extends AppCompatActivity {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
     }
+    public void CerrarSesion(String URL){
+        RequestQueue queve = Volley.newRequestQueue(this);
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                if (response.length() > 0) {
+                    try {
+                        JSONObject jsonObject = new JSONObject(response);
+                    } catch (JSONException jsnEx1) {
+                        Toast.makeText(getApplicationContext(), "Sesion Cerrada", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(Normaladmin.this, "Error de Copilación", Toast.LENGTH_SHORT).show();
+            }
+        });
+        queve.add(stringRequest);
+    }
 }
-
-
-
-
-
-    //Metodo  Insertar  Novedades
-
-
-
-
-

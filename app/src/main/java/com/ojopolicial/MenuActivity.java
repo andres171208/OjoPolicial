@@ -89,13 +89,13 @@ public class MenuActivity extends AppCompatActivity implements OnMapReadyCallbac
         mMap.addMarker(new MarkerOptions().position(SanPabloDelLago).title("EFP. San Pablo Del lago").snippet("Novedades: NO").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
         //  Marcador UER
         LatLng UER = new LatLng(-0.4247989655017759, -78.55183489118495);
-        mMap.addMarker(new MarkerOptions().position(UER).title("EFP. UER").snippet("Novedades: NO").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
+        mMap.addMarker(new MarkerOptions().position(UER).title("EFP. UER").snippet("Novedades: SI").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
         //  Marcador Eugenio Espejo
         LatLng EugenioEspejo = new LatLng(-0.183, -78.504);
-        mMap.addMarker(new MarkerOptions().position(EugenioEspejo).title("EFP. Eugenio Espejo").snippet("Novedades: NO").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
+        mMap.addMarker(new MarkerOptions().position(EugenioEspejo).title("EFP. Eugenio Espejo").snippet("Novedades: SI").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
         // Marcador Tambillo
         LatLng Tambillo = new LatLng(-0.426, -78.553);
-        mMap.addMarker(new MarkerOptions().position(Tambillo).title("EFP. Tambillo").snippet("Novedades: SI").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
+        mMap.addMarker(new MarkerOptions().position(Tambillo).title("EFP. Tambillo").snippet("Novedades: NO").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
 
         this.mMap.setOnMapClickListener(this);
         this.mMap.setOnMapClickListener(this);
@@ -109,9 +109,7 @@ public class MenuActivity extends AppCompatActivity implements OnMapReadyCallbac
 
 
 
-    }
-
-    @Override
+    }@Override
     public void onMapClick(@NonNull LatLng latLng) {
 
     }

@@ -6,62 +6,68 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MenuActivity">
-    <TableLayout
-        android:id="@+id/tbnovedades"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:ignore="MissingConstraints">
-
-    <TableRow
-        android:id="@+id/BotonNovdad"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <Button
-            android:id="@+id/btnnovedades"
-            android:layout_width="155dp"
-            android:layout_height="50dp"
-            android:onClick="Novedades"
-            android:text="@string/Novedades"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.028" />
-    <TableRow
-        android:id="@+id/BotonSalir"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <Button
-            android:id="@+id/btnSalir"
-            android:layout_width="173dp"
-            android:layout_height="match_parent"
-            android:onClick="Salir"
-            android:text="Cerrar Sesión"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.028" />
-    </TableRow>
-    </TableRow>
-
-    </TableLayout>
 
     <fragment
         android:id="@+id/mapView"
         android:name="com.google.android.gms.maps.SupportMapFragment"
-        android:layout_width="412dp"
-        android:layout_height="601dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/tbnovedades"
         app:layout_constraintTop_toTopOf="parent"
         map:uiRotateGestures="true"
         tools:ignore="MissingConstraints"
         tools:layout="@layout/support_simple_spinner_dropdown_item" />
 
+    <TableLayout
+        android:id="@+id/tbnovedades"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="106dp">
+
+        <TableRow
+            android:id="@+id/BotonNovdad"
+            android:layout_width="391dp"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/btnnovedades"
+                android:layout_width="158dp"
+                android:layout_height="match_parent"
+                android:onClick="Novedades"
+                android:text="@string/Novedades"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.028"
+                android:background="@color/black"/>
+
+            <TableRow
+                android:id="@+id/BotonSalir"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <Button
+                    android:id="@+id/btnSalir"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:onClick="Salir"
+                    android:text="Cerrar Sesión"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.028"
+                    android:background="@color/black"/>
+            </TableRow>
+        </TableRow>
+
+    </TableLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

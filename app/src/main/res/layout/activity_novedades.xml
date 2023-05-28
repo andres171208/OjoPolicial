@@ -78,27 +78,21 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.028" />
-                <TextView
-                    android:id="@+id/Opcionestxt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:textColor="#1643C7"
-                    android:textStyle="bold"
-                    android:text="Opciones"
-                    android:background="@color/white"
-                    android:textAlignment="center"
-                    tools:text="OPCIONES" />
+                    app:layout_constraintVertical_bias="0.028"
+                    />
 
             </TableRow>
+            <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fillViewport="true">
 
 
             <TableRow
                 android:id="@+id/FilaT"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#86B4B2B6">
+                android:background="#75BFBFBF">
 
                 <LinearLayout
                     android:id="@+id/llBotonera"
@@ -118,9 +112,8 @@
                     tools:ignore="MissingConstraints">
 
                 </ListView>
-
             </TableRow>
-
+            </ScrollView>
         </TableLayout>
 
     </androidx.cardview.widget.CardView>
